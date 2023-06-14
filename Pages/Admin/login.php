@@ -11,13 +11,12 @@
 </head>
 
 <body class="fullpage">
-    <div class="">
-        <?php include '../component/header.php'; ?>
-        <section class="mb-5 pb-5">
+    <div>
+        <section class="mb-5 pb-5 mt-5">
             <div class="container-fluid h-custom">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-md-9 col-lg-6 col-xl-5">
-                        <img src="../Images/Login.svg" class="img-fluid ms-5" alt="Sample image" style="width: 450px">
+                        <img src="../../Images/Login.svg" class="img-fluid ms-5" alt="Sample image" style="width: 450px">
                     </div>
                     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                         <form>
@@ -57,7 +56,7 @@
                 </div>
             </div>
         </section>
-        <?php include '../component/footer.php'; ?>
+        <?php include '../../component/footer.php'; ?>
     </div>
 </body>
 

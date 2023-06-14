@@ -14,13 +14,13 @@
   </head>
   <body class="fullpage">
     <div class="">
-    <?php include '../component/header.php'; ?>
+    <?php include '../../component/header.php'; ?>
       <main>
         <div class="container col-xxl-8 px-4 py-5">
           <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
               <img
-                src="../Images/articles.png"
+                src="../../Images/articles.png"
                 class="d-block mx-lg-auto img-fluid"
                 alt="Bootstrap Themes"
                 width="700"
@@ -44,7 +44,7 @@
           </div>
         </div>
       </main>
-      <?php include '../component/footer.php'; ?>
+      <?php include '../../component/footer.php'; ?>
     </div>
   </body>
 </html>
