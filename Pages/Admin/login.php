@@ -8,7 +8,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     exit;
 }
 
-// ../../component/headerAdmin.php
 // Include config file
 require_once "../../database/config.php";
 
@@ -131,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary btn-lg w-25" value="Login">
-                                    <p>Belum punya akun? <a href="register.php">Sign up now</a>.</p>
+                                    <p>Belum punya akun? <a href="#">Sign up now</a>.</p>
                                 </div>
                             </div>
                         </form>

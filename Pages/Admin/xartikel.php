@@ -22,7 +22,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body>
@@ -49,28 +51,41 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <a href="../../Pages/Admin/index.php" class="nav-link" aria-current="page">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a href="../../Pages/Admin/artikel/artikel.php" class="nav-link ">Article</a>
+                <a href="../../Pages/Admin/index.php" class="nav-link ">Article</a>
             </li>
         </ul>
     </header>
-    <main>
-        <div class="container py-4">
-            <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-                <div class="container-fluid py-5">
-                    <h1 class="display-4 fw-bold">
-                        <h1>Hai, <b>
-                                <?php echo htmlspecialchars($_SESSION["username"]); ?>
-                            </b></h1>
-                    </h1>
-                    <p class="col-md-9 fs-4">Selamat datang di dashboard website admin. Semoga Anda merasa nyaman dan
-                        mendapatkan pengalaman yang menyenangkan dalam mengelola website ini. Kami siap membantu Anda
-                        dalam setiap langkah perjalanan Anda di sini.</p>
-                    <button class="btn btn-primary btn-lg" type="button">Report Table</button>
-                </div>
-            </div>
-        </div>
+    <main class="container">
+        <table id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Artikel</th>
+                    <th>Isi</th>
+                    <th>Gambar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include "../../database/config.php";
+                $artikels = mysqli_query($link, "select * from artikel");
+                while ($row = mysqli_fetch_array($artikels)) {
+                    echo "<tr>
+            <td>" . $row['nama_artikel'] . "</td>
+            <td>" . $row['isi_artikel'] . "</td>
+            <td>" . $row['gambar_artikel'] . "</td>
+            
+        </tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </main>
-    <?php include '../../component/footer.php'; ?>
+    <!-- <?php include '../../component/footer.php'; ?> -->
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

@@ -1,18 +1,18 @@
 <?php
 // Check existence of id parameter before processing further
-if(isset($_GET["id_komentar"]) && !empty(trim($_GET["id_komentar"]))){
+if(isset($_GET["id_artikel"]) && !empty(trim($_GET["id_artikel"]))){
     // Include config file
     require_once "../../database/config.php";
     
     // Prepare a select statement
-    $sql = "SELECT * FROM komentar WHERE id_komentar = ?";
+    $sql = "SELECT * FROM artikel WHERE id_artikel = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "i", $param_id);
         
         // Set parameters
-        $param_id = trim($_GET["id_komentar"]);
+        $param_id = trim($_GET["id_artikel"]);
         
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
@@ -24,9 +24,9 @@ if(isset($_GET["id_komentar"]) && !empty(trim($_GET["id_komentar"]))){
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                 
                 // Retrieve individual field value
-                $name = $row["nama"];
-                $address = $row["email"];
-                $salary = $row["komentar"];
+                $name = $row["nama_artikel"];
+                $address = $row["gambar_artikel"];
+                $salary = $row["isi_artikel"];
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
                 header("location: error.php");
@@ -71,16 +71,16 @@ if(isset($_GET["id_komentar"]) && !empty(trim($_GET["id_komentar"]))){
                         <h1>View Record</h1>
                     </div>
                     <div class="form-group">
-                        <label>Name</label>
-                        <p class="form-control-static"><?php echo $row["nama"]; ?></p>
+                        <label>Artikel</label>
+                        <p class="form-control-static"><?php echo $row["nama_artikel"]; ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
-                        <p class="form-control-static"><?php echo $row["email"]; ?></p>
+                        <label>Gambar</label>
+                        <p class="form-control-static"><?php echo $row["gambar_artikel"]; ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Salary</label>
-                        <p class="form-control-static"><?php echo $row["komentar"]; ?></p>
+                        <label>Isi</label>
+                        <p class="form-control-static"><?php echo $row["isi_artikel"]; ?></p>
                     </div>
                     <p><a href="index.php" class="btn btn-primary">Back</a></p>
                 </div>

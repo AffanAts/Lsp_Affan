@@ -2,3 +2,8 @@
     margin: 0;
     padding: 0;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
