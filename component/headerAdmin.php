@@ -51,9 +51,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <li class="nav-item">
                 <a href="../../Pages/Admin/index.php" class="nav-link ">Article</a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="../Pages/login.php" class="nav-link ">Login</a>
-            </li> -->
         </ul>
     </header>
 </body>
