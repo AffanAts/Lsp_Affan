@@ -97,18 +97,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
     <link rel="stylesheet" href="style/style.css" />
+    
 </head>
 
-<body>
-    <div>
-        <section class="mb-5 pb-5 mt-5">
-            <div class="container-fluid h-custom">
+<body class="d-flex flex-column min-vh-100">
+    <main>
+        <section class="pb-5 mt-5 pt-2">
+            <div class="container-fluid h-custom mt-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-md-9 col-lg-6 col-xl-5 mt-5">
                         <img src="../../Images/Login.svg" class="img-fluid ms-5" alt="Sample image"
-                            style="width: 450px">
+                            style="width: 550px">
                     </div>
                     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="margin-top:160px">
+                    <h1 class="mb-5">login</h1>
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="form-outline mb-4" <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>>
                                 <input type="text" name="username" id="form3Example3"
@@ -138,8 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </section>
-        <?php include '../../component/footer.php'; ?>
-    </div>
+    </main>
+    <?php include '../../component/footer.php'; ?>
 </body>
 
 </html>

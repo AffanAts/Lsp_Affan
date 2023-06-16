@@ -20,13 +20,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+   <!-- Font Awesome -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
 </head>
+
 <body class="d-flex flex-column min-vh-100">
   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 bg-light">
     <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
@@ -51,34 +52,36 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <a href="../../../Pages/Admin/index.php" class="nav-link" aria-current="page">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link ">Article</a>
+        <a href="../artikel/artikel.php" class="nav-link ">Article</a>
       </li>
       <li class="nav-item">
-        <a href="../komentar/komentar.php" class="nav-link ">Komentar</a>
+        <a href="../../Pages/Admin/komentar/komentar.php" class="nav-link ">Komentar</a>
       </li>
     </ul>
   </header>
   <main class="container w-100">
     <center>
-      <h1>Data Artikel</h1>
+      <h1>Data Komentar</h1>
     </center>
-    <a href="tambahArtikel.php"><button class="btn btn-primary btn-lg" type="button">Tambah Artikel</button></a>
     <br />
     <br />
     <table id="example" class="table table-striped">
       <thead>
         <tr>
           <th>No</th>
-          <th>Artikel</th>
-          <th>Isi Artikel</th>
-          <th>Gambar</th>
+          <th>Judul Artikel</th>
+          <th>Nama Komentar</th>
+          <th>Email</th>
+          <th>Isi Komentar</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <?php
         // jalankan query untuk menampilkan semua data diurutkan berdasarkan nim
-        $query = "SELECT * FROM artikel ORDER BY id_artikel ASC";
+        $query = "SELECT * FROM komentar ORDER BY id_komentar ASC";
+        // $query2 = "SELECT * FROM artikel WHERE id_artikel='$id_artikel'";
+        
         $result = mysqli_query($link, $query);
         //mengecek apakah ada error ketika menjalankan query
         if (!$result) {
@@ -100,14 +103,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
               <?php echo $row['nama_artikel']; ?>
             </td>
             <td>
-              <?php echo substr($row['isi_artikel'], 0, 500); ?> .....
-            </td>
-            <td style="text-align: center;"><img src="gambar/<?php echo $row['gambar_artikel']; ?>" style="width: 120px;">
+              <?php echo $row['nama']; ?>
             </td>
             <td>
-              <a href="editArtikel.php?id_artikel=<?php echo $row['id_artikel']; ?>"><i
-                  class="far fa-pen-to-square"></i></a> |
-              <a href="proses_hapus.php?id_artikel=<?php echo $row['id_artikel']; ?>"
+              <?php echo $row['email']; ?>
+            </td>
+            <td>
+              <?php echo substr($row['komentar'], 0, 500); ?> .....
+            </td>
+            <td>
+              <a href="proses_hapusK.php?id_komentar=<?php echo $row['id_komentar']; ?>"
                 onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="far fa-trash-can"></i></a>
             </td>
           </tr>
@@ -129,7 +134,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       });
     </script>
   </main>
-  <!-- FOOTER -->
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto">
     <div class="col-md-4 d-flex align-items-center">
       <a href="#" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
