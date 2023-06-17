@@ -20,8 +20,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-   <!-- Font Awesome -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
   <!-- MDB -->
@@ -79,8 +79,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       <tbody>
         <?php
         // jalankan query untuk menampilkan semua data diurutkan berdasarkan nim
-        $query = "SELECT * FROM komentar ORDER BY id_komentar ASC";
-        // $query2 = "SELECT * FROM artikel WHERE id_artikel='$id_artikel'";
+        $query = "SELECT komentar.*, artikel.nama_artikel 
+          FROM komentar INNER JOIN artikel ON komentar.id_artikel = artikel.id_artikel";
         
         $result = mysqli_query($link, $query);
         //mengecek apakah ada error ketika menjalankan query
@@ -127,8 +127,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       $(document).ready(function () {
         $('#example').DataTable({
           lengthMenu: [
-            [3, 5, 10, -1],
-            [3, 5, 10, 'All'],
+            [5, 8, 10, -1],
+            [5, 8, 10, 'All'],
           ],
         });
       });
