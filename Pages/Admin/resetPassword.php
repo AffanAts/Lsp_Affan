@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <title>JeWePe Article</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->

@@ -30,7 +30,7 @@ if (isset($_GET['id_artikel'])) {
 <html>
 
 <head>
-  <title>LSP Affan</title>
+  <title>JeWePe Article</title>
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- Google Fonts -->

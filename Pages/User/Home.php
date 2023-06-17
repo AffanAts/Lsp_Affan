@@ -29,12 +29,9 @@
             JeWePe Article
           </h1>
           <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Vestibulum et arcu bibendum, tristique velit vitae, pretium
-            elit. Suspendisse scelerisque erat quis nunc dictum fringilla.
-            Curabitur nec commodo odio. Nulla nec sapien pulvinar, aliquam
-            nisi non, ullamcorper massa. Phasellus tincidunt quis diam ac
-            vehicula. Sed mollis eleifend semper.
+            JeWePe Artikel adalah website artikel yang menyajikan beragam informasi menarik, inspiratif, dan terkini.
+            Dengan tampilan yang modern dan intuitif, kami menghadirkan konten-konten yang dikurasi secara khusus untuk
+            memenuhi kebutuhan pembaca dari segala kalangan.
           </p>
         </div>
       </div>

@@ -24,7 +24,7 @@ $jumlah_komentar = mysqli_num_rows($data_komentar);
 
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>JeWePe Article</title>
     <style type="text/css">
         body {
             font: 14px sans-serif;

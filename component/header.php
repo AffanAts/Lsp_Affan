@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta nama="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JeWePe Article</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -29,9 +29,6 @@
             <li class="nav-item">
                 <a href="../../Pages/User/listArticle.php" class="nav-link ">Article</a>
             </li>
-            <!-- <li class="nav-item">
-                <a href="../Pages/login.php" class="nav-link ">Login</a>
-            </li> -->
         </ul>
     </header>
 </body>
