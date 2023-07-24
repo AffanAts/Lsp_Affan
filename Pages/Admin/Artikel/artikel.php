@@ -1,5 +1,5 @@
 <?php
-include('../../../database/config.php'); //agar index terhubung dengan database, maka koneksi sebagai penghubung harus di include
+include('../../../database/config.php'); // Include file koneksi ke database
 
 // Initialize the session
 session_start();
@@ -10,6 +10,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -27,8 +28,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   <!-- MDB -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
 </head>
+
 <body class="d-flex flex-column min-vh-100">
-  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 bg-light">
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 bg-light">
     <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
       <img src="../../../Images/JWP.png" alt="sss" class="ms-5" style="width: 90px" />
     </a>
@@ -58,6 +60,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       </li>
     </ul>
   </header>
+
+  <!-- Main content -->
   <main class="container w-100">
     <center>
       <h1>Data Artikel</h1>
@@ -72,24 +76,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
           <th>Artikel</th>
           <th>Isi Artikel</th>
           <th>Gambar</th>
+          <th>Komentar</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <?php
-        // jalankan query untuk menampilkan semua data diurutkan berdasarkan nim
+        // Query untuk menampilkan semua data artikel diurutkan berdasarkan id_artikel
         $query = "SELECT * FROM artikel ORDER BY id_artikel ASC";
         $result = mysqli_query($link, $query);
-        //mengecek apakah ada error ketika menjalankan query
         if (!$result) {
-          die("Query Error: " . mysqli_errno($link) .
-            " - " . mysqli_error($link));
+          die("Query Error: " . mysqli_errno($link) . " - " . mysqli_error($link));
         }
 
-        //buat perulangan untuk element tabel dari data mahasiswa
-        $no = 1; //variabel untuk membuat nomor urut
-        // hasil query akan disimpan dalam variabel $data dalam bentuk array
-        // kemudian dicetak dengan perulangan while
+        // Loop untuk menampilkan data artikel dalam bentuk tabel
+        $no = 1; // Variabel untuk membuat nomor urut
         while ($row = mysqli_fetch_assoc($result)) {
           ?>
           <tr>
@@ -105,10 +106,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <td style="text-align: center;"><img src="gambar/<?php echo $row['gambar_artikel']; ?>" style="width: 120px;">
             </td>
             <td>
+              <?php echo ($row['komentar_aktif'] == 1) ? "Aktif" : "Nonaktif"; ?>
+            </td>
+            <td>
               <a href="editArtikel.php?id_artikel=<?php echo $row['id_artikel']; ?>"><i
                   class="far fa-pen-to-square"></i></a> |
               <a href="proses_hapus.php?id_artikel=<?php echo $row['id_artikel']; ?>"
-                onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="far fa-trash-can"></i></a>
+                onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="far fa-trash-can"></i></a> |
+              <?php
+              if ($row['komentar_aktif'] == 1) {
+                echo "<a href=\"nonaktifkanKomentar.php?id_artikel={$row['id_artikel']}\"><i class=\"fas fa-comments\"></i></a>";
+              } else {
+                echo "<a href=\"aktifkanKomentar.php?id_artikel={$row['id_artikel']}\"><i class=\"fas fa-comments\"></i></a>";
+              }
+              ?>
             </td>
           </tr>
 
@@ -129,6 +140,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       });
     </script>
   </main>
+
   <!-- FOOTER -->
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto">
     <div class="col-md-4 d-flex align-items-center">
@@ -150,8 +162,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       </li>
     </ul>
   </footer>
+
+  <!-- Bootstrap scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 </html>
