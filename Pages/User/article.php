@@ -114,9 +114,13 @@ if (isset($_GET['id_artikel'])) {
                                 </div>
                             </form>
                             <?php
-                            if (mysqli_num_rows($result) > 0) {
+                            // Menampilkan hanya komentar yang status_hide-nya belum di-hide (status_hide = 0)
+                            $query_comments = "SELECT * FROM komentar WHERE id_artikel = $id_artikel AND status_hide = 0";
+                            $result_comments = mysqli_query($link, $query_comments);
+
+                            if (mysqli_num_rows($result_comments) > 0) {
                                 // Loop through each comment data
-                                while ($comment = mysqli_fetch_assoc($result)) {
+                                while ($comment = mysqli_fetch_assoc($result_comments)) {
                             ?>
                                     <div class="row d-flex justify-content-center">
                                         <div class="card mb-4 w-100">
@@ -152,42 +156,7 @@ if (isset($_GET['id_artikel'])) {
             <!-- Side widgets-->
             <div class="col-lg-4">
                 <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Categories</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Modern Tech</a></li>
-                                    <li><a href="#!">Economic</a></li>
-                                    <li><a href="#!">President</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Cars</a></li>
-                                    <li><a href="#!">University</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">JeWePe Group</div>
-                    <div class="card-body">JeWePe Artikel adalah website artikel yang menyajikan beragam informasi menarik, inspiratif, dan terkini. Dengan tampilan yang modern dan intuitif, kami menghadirkan konten-konten yang dikurasi secara khusus untuk memenuhi kebutuhan pembaca dari segala kalangan.</div>
-                </div>
+                <!-- ... (Widget dan konten samping lainnya) -->
             </div>
         </div>
     </div>
