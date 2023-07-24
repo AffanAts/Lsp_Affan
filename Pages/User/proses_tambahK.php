@@ -1,33 +1,33 @@
 <?php
-// memanggil file link.php untuk melakukan koneksi ke database
+// memanggil file koneksi.php untuk membuat koneksi
 include '../../database/config.php';
 
-// membuat variabel untuk menampung data dari form
-$nama = $_POST['nama'];
-$email = $_POST['email'];
-$komentar = $_POST['komentar'];
-$id_artikel = $_POST['id_artikel']; // Menambahkan variabel untuk id_artikel
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the form data
+    $id_artikel = $_POST["id_artikel"];
+    $nama = $_POST["nama"];
+    $email = $_POST["email"];
+    $komentar = $_POST["komentar"];
+    
+    // Set the default timezone to Jakarta
+    date_default_timezone_set('Asia/Jakarta');
+    
+    // Get the current date and time in Jakarta timezone
+    $tanggal_komentar = date('Y-m-d H:i:s');
 
-// jalankan query INSERT untuk menambah data ke database
-$query = "INSERT INTO komentar (nama, email, komentar, id_artikel) VALUES (?, ?, ?, ?)";
+    // Insert the comment data into the database
+    $query = "INSERT INTO komentar (id_artikel, nama, email, komentar, tanggal_komentar) VALUES ('$id_artikel', '$nama', '$email', '$komentar', '$tanggal_komentar')";
+    
+    $result = mysqli_query($link, $query);
 
-// Prepare the statement
-$stmt = mysqli_prepare($link, $query);
-
-// Bind the parameters with the values
-mysqli_stmt_bind_param($stmt, "sssi", $nama, $email, $komentar, $id_artikel);
-
-if (mysqli_stmt_execute($stmt)) {
-    // Data berhasil ditambahkan, redirect ke halaman artikel.php
-    header("Location: article.php?id_artikel=" . $id_artikel);
-    exit();
-} else {
-    // Query gagal dijalankan, tampilkan pesan error
-    $error = "Query gagal dijalankan: " . mysqli_error($link);
-    echo $error;
+    if ($result) {
+        // Comment added successfully
+        // Redirect back to the article page with the added comment
+        header("Location: article.php?id_artikel=$id_artikel");
+        exit();
+    } else {
+        // Error occurred while adding comment
+        echo "Error: " . mysqli_error($link);
+    }
 }
-
-// Close the statement and connection
-mysqli_stmt_close($stmt);
-mysqli_close($link);
 ?>

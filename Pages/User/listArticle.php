@@ -63,7 +63,7 @@ if (isset($_GET['search'])) {
       ?>
         <div class="col">
           <div class="card h-100">
-          <a href="article.php?id_artikel=<?php echo $row['id_artikel']; ?>"><img class="rounded mx-auto d-block img-fluid" style="width: 600px; height:300px" src="../admin/Artikel/gambar/<?php echo $row['gambar_artikel']; ?>"></a>
+          <a href="article.php?id_artikel=<?php echo $row['id_artikel']; ?>"><img class="rounded mx-auto d-block img-fluid" style=  "width: 600px; height:300px" src="../admin/Artikel/gambar/<?php echo $row['gambar_artikel']; ?>"></a>
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">
                 <?php echo $row['nama_artikel']; ?>
