@@ -55,7 +55,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <a href="../artikel/artikel.php" class="nav-link ">Article</a>
       </li>
       <li class="nav-item">
-        <a href="../../Pages/Admin/komentar/komentar.php" class="nav-link ">Komentar</a>
+        <a href="../komentar/komentar.php" class="nav-link ">Komentar</a>
       </li>
     </ul>
   </header>
@@ -74,6 +74,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
           <th>Email</th>
           <th>Isi Komentar</th>
           <th>Action</th>
+          <th>Hide/Unhide</th>
         </tr>
       </thead>
       <tbody>
@@ -96,24 +97,30 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         while ($row = mysqli_fetch_assoc($result)) {
           ?>
           <tr>
+            <td><?php echo $no; ?></td>
+            <td><?php echo $row['nama_artikel']; ?></td>
+            <td><?php echo $row['nama']; ?></td>
+            <td><?php echo $row['email']; ?></td>
+            <td><?php echo substr($row['komentar'], 0, 500); ?> .....</td>
             <td>
-              <?php echo $no; ?>
-            </td>
-            <td>
-              <?php echo $row['nama_artikel']; ?>
-            </td>
-            <td>
-              <?php echo $row['nama']; ?>
-            </td>
-            <td>
-              <?php echo $row['email']; ?>
-            </td>
-            <td>
-              <?php echo substr($row['komentar'], 0, 500); ?> .....
-            </td>
-            <td>
+              <!-- Tombol Hapus -->
               <a href="proses_hapusK.php?id_komentar=<?php echo $row['id_komentar']; ?>"
-                onclick="return confirm('Anda yakin akan menghapus data ini?')"><i class="far fa-trash-can"></i></a>
+                onclick="return confirm('Anda yakin akan menghapus data ini?')">
+                <button class="btn btn-danger btn-sm">Delete</button>
+              </a>
+            </td>
+            <td>
+              <?php if ($row['status_hide'] == 0) { ?>
+                <!-- Tombol Hide -->
+                <a href="proses_hideK.php?id_komentar=<?php echo $row['id_komentar']; ?>&status=1">
+                  <button class="btn btn-danger btn-sm">Hide</button>
+                </a>
+              <?php } else { ?>
+                <!-- Tombol Unhide -->
+                <a href="proses_hideK.php?id_komentar=<?php echo $row['id_komentar']; ?>&status=0">
+                  <button class="btn btn-success btn-sm">Unhide</button>
+                </a>
+              <?php } ?>
             </td>
           </tr>
 
@@ -158,4 +165,4 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
-</html>
+</html> 
